@@ -19,8 +19,8 @@ exports.up = function (knex) {
       table.string("rarity").notNullable();
       table.string("description").notNullable();
       table.string("image").notNullable();
-      table.integer("marketPrice").notNullable().defaultTo(0);
-      table.integer("price").notNullable().defaultTo(0);
+      table.decimal("marketPrice", 6, 2).notNullable().defaultTo(0.0);
+      table.decimal("price", 6, 2).notNullable().defaultTo(0.0);
       table
         .integer("sellerId")
         .unsigned()
