@@ -3,6 +3,10 @@ const fs = require("fs");
 const router = express.Router();
 const knex = require("knex")(require("../knexfile").development);
 
+app.route("/", (req, res) => {
+  res.send(`<h1>Welcome to my Express App</h1>`);
+});
+
 router.route("/").get((req, res) => {
   knex("listing")
     .then((data) => {
