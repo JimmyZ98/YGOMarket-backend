@@ -1,7 +1,7 @@
 const express = require("express");
 const fs = require("fs");
 const router = express.Router();
-const knex = require("knex")(require("../knexfile").development);
+const knex = require("knex")(require("../knexfile"));
 
 router.route("/", (req, res) => {
   res.send(`<h1>Welcome to my Express App</h1>`);
