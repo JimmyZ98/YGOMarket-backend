@@ -53,33 +53,17 @@ router.route("/sell").post((req, res) => {
     });
 });
 
-// router.route("/checkout").post((req, res) => {
-//   knex("listing")
-//     .whereIn("listing.id", req.body)
-//     .del()
-//     .then((data) => {
-//       res.status(200).json(data);
-//     })
-
-//     .catch((err) => {
-//       res.status(400).send(`Error checking out: ${err}`);
-//     });
-// });
-
 router.route("/checkout").post((req, res) => {
-  res.send(req.body);
-});
+  knex("listing")
+    .whereIn("listing.id", req.body)
+    .del()
+    .then((data) => {
+      res.status(200).json(data);
+    })
 
-// router.route("/checkout").delete((req, res) => {
-//   knex("listing")
-//     .whereIn("listing.id", [req.body.id])
-//     .del()
-//     .then((data) => {
-//       res.status(200).json(data);
-//     })
-//     .catch((err) => {
-//       res.status(400).send(`Error checking out: ${err}`);
-//     });
-// });
+    .catch((err) => {
+      res.status(400).send(`Error checking out: ${err}`);
+    });
+});
 
 module.exports = router;
