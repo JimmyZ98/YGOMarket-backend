@@ -4,12 +4,12 @@
  */
 exports.up = function (knex) {
   return knex.schema
-    .createTable("user", (table) => {
+    .createTable("users", (table) => {
       table.increments("id").primary();
+      table.string("firstName").notNullable();
+      table.string("lastName").notNullable();
       table.string("username").notNullable();
-      table.string("name").notNullable().defaultTo("Store Manager");
-      table.string("password").notNullable();
-      table.string("email").notNullable();
+      table.string("passwordHashed").notNullable();
       table.timestamp("updated_at").defaultTo(knex.fn.now());
     })
     .createTable("listing", (table) => {
@@ -26,7 +26,7 @@ exports.up = function (knex) {
         .unsigned()
         .notNullable()
         .references("id")
-        .inTable("user")
+        .inTable("users")
         .onUpdate("CASCADE")
         .onDelete("CASCADE");
       table.timestamp("updated_at").defaultTo(knex.fn.now());
@@ -38,5 +38,5 @@ exports.up = function (knex) {
  * @returns { Promise<void> }
  */
 exports.down = function (knex) {
-  return knex.schema.dropTable("listing").dropTable("user");
+  return knex.schema.dropTable("listing").dropTable("users");
 };
