@@ -8,7 +8,6 @@ const listingRoutes = require("./routes/listingRoute");
 const usersRoutes = require("./routes/users");
 
 app.use(cors());
-
 app.use(express.json());
 
 app.use(express.static("public"));
