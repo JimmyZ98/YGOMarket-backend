@@ -69,7 +69,7 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/current", (req, res) => {
-  res.json(req.decode);
+  res.json(jwt.decode(req.headers.authorization.replace("Bearer ", "")));
 });
 
 module.exports = router;
